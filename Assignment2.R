@@ -1,6 +1,6 @@
 # These functions calculates the inverse of a matrix and saves it to the cache.
 
-# makeMatrix Contains the following functions:
+# makeCacheMatrix Contains the following functions:
 
 # - setm: set the value of the matrix
 # - getm: set the value of the matrix
@@ -8,7 +8,7 @@
 # - getinverse: ger  the value  of the invese of the matrix
 
 
-makeMatrix<-function(x=matrix()){
+makeCacheMatrix<-function(x=matrix()){
       m <- NULL
       setm <-function(y) {
             x <<- y
@@ -21,14 +21,17 @@ makeMatrix<-function(x=matrix()){
            setinverse = setinverse, getinverse = getinverse)
 }
 
-cacheinverse<-function(x,...){
+# This function calculates the inverse of the matrix 
+
+cacheSolve<-function(x,...){
       m<- x$getinverse() 
       if(!is.null(m)) {
             message("getting cached data")
             return(m)
       }
-      data <- x$getm()
-      m <- solve(data, ...)
+      dt <- x$getm()
+      m <- solve(dt)
       x$setinverse(m)
       m
 }
+
